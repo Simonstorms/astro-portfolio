@@ -6,110 +6,106 @@ import avatar from "../assets/avatar.svg";
 ---
 
 <Layout title="Designer Name - Portfolio">
-  <Header currentPage="projects" />
+    <Header currentPage="projects" />
 
-  <main>
-    <section class="hero">
-      <div class="avatar-wrapper">
-        <Image
-          src={avatar}
-          alt="Designer avatar"
-          class="avatar"
-          width={80}
-          height={80}
-        />
-        <span class="wave">👋</span>
-      </div>
+    <main>
+        <section class="hero">
+            <div class="avatar-wrapper">
+                <Image
+                    src={avatar}
+                    alt="Designer avatar"
+                    class="avatar"
+                    width={80}
+                    height={80}
+                />
+                <span class="wave">👋</span>
+            </div>
 
-      <h1>I craft interfaces</h1>
+            <h1>I craft interfaces</h1>
 
-      <p class="bio">
-        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-        sint. Velit officia consequat duis enim velit mollit. Exercitation veniam
-        consequat sunt nostrud amet.
-      </p>
+            <p class="bio">
+                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
+                amet sint. Velit officia consequat duis enim velit mollit.
+                Exercitation veniam consequat sunt nostrud amet.
+            </p>
 
-      <a href="#" class="cta">
-        Take me to the magic land <span class="arrow">↗</span>
-      </a>
-    </section>
-
-    <section class="projects">
-      <h2>Selected projects</h2>
-    </section>
-  </main>
+            <a href="#" class="cta">
+                Take me to the magic land <span class="arrow">↗</span>
+            </a>
+        </section>
+    </main>
 </Layout>
 
 <style>
-  main {
-    padding-bottom: 80px;
-  }
+    main {
+        padding-bottom: 80px;
+    }
 
-  .hero {
-    padding: 48px 0 80px;
-  }
+    .hero {
+        padding: 48px 0 80px;
+    }
 
-  .avatar-wrapper {
-    position: relative;
-    width: 80px;
-    margin-bottom: 24px;
-  }
+    .avatar-wrapper {
+        position: relative;
+        width: 80px;
+        margin-bottom: 24px;
+    }
 
-  .avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    background: #f5f5f5;
-  }
+    .avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: #f5f5f5;
+    }
 
-  .wave {
-    position: absolute;
-    bottom: -4px;
-    right: -8px;
-    font-size: 20px;
-  }
+    .wave {
+        position: absolute;
+        bottom: -4px;
+        right: -8px;
+        font-size: 20px;
+    }
 
-  h1 {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 16px;
-    letter-spacing: -0.3px;
-  }
+    h1 {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 16px;
+        letter-spacing: -0.3px;
+    }
 
-  .bio {
-    font-size: 17px;
-    line-height: 1.6;
-    color: #666;
-    font-style: italic;
-    max-width: 460px;
-    margin-bottom: 24px;
-  }
+    .bio {
+        font-size: 17px;
+        line-height: 1.6;
+        color: #666;
+        font-style: italic;
+        max-width: 460px;
+        margin-bottom: 24px;
+    }
 
-  .cta {
-    display: inline-flex;
-    align-items: center;
-    font-size: 15px;
-    color: #1a1a1a;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
+    .cta {
+        display: inline-flex;
+        align-items: center;
+        font-size: 15px;
+        color: #1a1a1a;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
 
-  .cta:hover {
-    color: #666;
-  }
+    .cta:hover {
+        color: #666;
+    }
 
-  .arrow {
-    margin-left: 4px;
-  }
+    .arrow {
+        margin-left: 4px;
+    }
 
-  .projects {
-    padding-top: 24px;
-  }
+    .projects {
+        padding-top: 24px;
+    }
 
-  .projects h2 {
-    font-size: 14px;
-    font-weight: 500;
-    color: #888;
-  }
+    .projects h2 {
+        font-size: 14px;
+        font-weight: 500;
+        color: #888;
+    }
 </style>
