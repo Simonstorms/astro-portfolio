@@ -1,0 +1,41 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+---
+
+<Layout title="Believes - Designer Name">
+    <Header currentPage="believes" />
+
+    <main>
+        <section class="hero">
+            <h1>Believes</h1>
+            <p class="intro">
+                The principles and beliefs that guide my design practice.
+            </p>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    main {
+        padding-bottom: 80px;
+    }
+
+    .hero {
+        padding: 48px 0 80px;
+    }
+
+    h1 {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 16px;
+        letter-spacing: -0.3px;
+    }
+
+    .intro {
+        font-size: 17px;
+        line-height: 1.6;
+        color: #666;
+        max-width: 460px;
+    }
+</style>

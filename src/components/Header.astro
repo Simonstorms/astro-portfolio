@@ -1,70 +1,72 @@
 ---
 interface Props {
-  currentPage?: string;
+    currentPage?: string;
 }
 
 const { currentPage = "projects" } = Astro.props;
 ---
 
 <header>
-  <a href="/" class="logo">Designer Name</a>
-  <nav>
-    <a href="/projects" class:list={[{ active: currentPage === "projects" }]}>
-      Projects
-      {currentPage === "projects" && <span class="dot">•</span>}
-    </a>
-    <a href="/about" class:list={[{ active: currentPage === "about" }]}>
-      About
-    </a>
-    <a href="/play" class="play">
-      <span class="sparkle">✦</span> Play
-    </a>
-  </nav>
+    <nav>
+        <a href="/" class:list={[{ active: currentPage === "projects" }]}>
+            Projects
+            {currentPage === "projects" && <span class="dot" />}
+        </a>
+        <a
+            href="/believes"
+            class:list={[{ active: currentPage === "believes" }]}
+        >
+            Believes
+            {currentPage === "believes" && <span class="dot" />}
+        </a>
+        <a href="/magic" class:list={[{ active: currentPage === "magic" }]}>
+            <span class="sparkle">✦</span> Magic
+            {currentPage === "magic" && <span class="dot" />}
+        </a>
+    </nav>
 </header>
 
 <style>
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px 0;
-  }
+    header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 24px 0;
+    }
 
-  .logo {
-    font-size: 15px;
-    font-weight: 500;
-    color: #666;
-  }
+    .logo {
+        font-size: 15px;
+        font-weight: 500;
+        color: #666;
+    }
 
-  nav {
-    display: flex;
-    gap: 32px;
-  }
+    nav {
+        display: flex;
+        gap: 32px;
+    }
 
-  nav a {
-    position: relative;
-    font-size: 15px;
-    color: #1a1a1a;
-  }
+    nav a {
+        position: relative;
+        font-size: 15px;
+        color: #1a1a1a;
+    }
 
-  nav a:hover {
-    color: #666;
-  }
+    nav a:hover {
+        color: #666;
+    }
 
-  .dot {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -16px;
-    font-size: 10px;
-    color: #1a1a1a;
-  }
+    .dot {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -14px;
+        width: 5px;
+        height: 5px;
+        background: #1a1a1a;
+        border-radius: 50%;
+    }
 
-  .play {
-    color: #b8860b;
-  }
-
-  .sparkle {
-    font-size: 12px;
-  }
+    .sparkle {
+        font-size: 12px;
+    }
 </style>
