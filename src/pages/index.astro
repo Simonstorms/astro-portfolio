@@ -28,8 +28,7 @@ import group4 from "../assets/Group4.png";
                         quality={95}
                         loading="eager"
                     />
-                    <span class="wave">👋</span>
-                </div>
+                                    </div>
 
                 <div class="hero-info">
                     <h1>Simon Gneuss</h1>
@@ -155,7 +154,10 @@ import group4 from "../assets/Group4.png";
                         src={group1}
                         alt="Cledon"
                         class="work-image"
+                        width={900}
+                        height={620}
                         loading="eager"
+                        fetchpriority="high"
                     />
                     <h3>Cledon</h3>
                     <p>
@@ -179,6 +181,8 @@ import group4 from "../assets/Group4.png";
                         src={group2}
                         alt="Intent"
                         class="work-image"
+                        width={900}
+                        height={620}
                         loading="eager"
                     />
                     <h3>Intent</h3>
@@ -203,7 +207,9 @@ import group4 from "../assets/Group4.png";
                         src={group3}
                         alt="Previous Portfolio"
                         class="work-image"
-                        loading="eager"
+                        width={900}
+                        height={620}
+                        loading="lazy"
                     />
                     <h3>Previous Portfolio</h3>
                     <p>
@@ -227,7 +233,9 @@ import group4 from "../assets/Group4.png";
                         src={group4}
                         alt="TreeMatch"
                         class="work-image"
-                        loading="eager"
+                        width={900}
+                        height={620}
+                        loading="lazy"
                     />
                     <h3>TreeMatch</h3>
                     <p>
@@ -272,13 +280,6 @@ import group4 from "../assets/Group4.png";
         border-radius: 16px;
         object-fit: cover;
         object-position: center 70%;
-    }
-
-    .wave {
-        position: absolute;
-        bottom: 0;
-        right: -4px;
-        font-size: 28px;
     }
 
     .hero-info {
