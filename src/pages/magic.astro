@@ -3,10 +3,11 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 ---
 
-<Layout title="Magic - Designer Name">
+<Layout title="Magic - Simon Gneuss">
     <Header currentPage="magic" />
 
     <main>
+        <canvas id="ascii-canvas"></canvas>
         <section class="hero">
             <h1>✦ Magic</h1>
             <p class="intro">
@@ -19,17 +20,31 @@ import Header from "../components/Header.astro";
 <style>
     main {
         padding-bottom: 80px;
+        position: relative;
+    }
+
+    #ascii-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1000;
     }
 
     .hero {
         padding: 48px 0 80px;
+        position: relative;
+        z-index: 1;
     }
 
     h1 {
-        font-size: 28px;
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 40px;
         font-weight: 600;
         margin-bottom: 16px;
-        letter-spacing: -0.3px;
     }
 
     .intro {
@@ -39,3 +54,93 @@ import Header from "../components/Header.astro";
         max-width: 460px;
     }
 </style>
+
+<script>
+    const canvas = document.getElementById("ascii-canvas") as HTMLCanvasElement;
+    const ctx = canvas.getContext("2d")!;
+
+    const ASCII_CHARS = "@#$%&*!?+=~^°|/\\<>[]{}().:;,-_'\"`░▒▓█▄▀■□▪▫●○◐◑◒◓◔◕◖◗★☆✦✧✱✲✳✴✵✶✷✸✹※†‡§¶•·";
+
+    interface Particle {
+        x: number;
+        y: number;
+        vx: number;
+        vy: number;
+        char: string;
+        life: number;
+        maxLife: number;
+        opacity: number;
+        size: number;
+    }
+
+    const particles: Particle[] = [];
+    let mouseX = 0;
+    let mouseY = 0;
+    let isMouseMoving = false;
+    let lastMouseMove = 0;
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    function createParticle(x: number, y: number) {
+        particles.push({
+            x: x + (Math.random() - 0.5) * 10,
+            y,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: Math.random() * 0.2,
+            char: ASCII_CHARS[Math.floor(Math.random() * ASCII_CHARS.length)],
+            life: 0,
+            maxLife: Math.random() * 80 + 60,
+            opacity: 1,
+            size: Math.random() * 6 + 10,
+        });
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const now = Date.now();
+        isMouseMoving = now - lastMouseMove < 100;
+
+        if (isMouseMoving) {
+            for (let i = 0; i < 2; i++) {
+                createParticle(mouseX, mouseY);
+            }
+        }
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+
+            p.vy += 0.03;
+            p.x += p.vx;
+            p.y += p.vy;
+
+            p.life++;
+            p.opacity = 1 - p.life / p.maxLife;
+
+            ctx.save();
+            ctx.font = `${p.size}px monospace`;
+            ctx.fillStyle = `rgba(0, 0, 0, ${p.opacity * 0.6})`;
+            ctx.fillText(p.char, p.x, p.y);
+            ctx.restore();
+
+            if (p.life >= p.maxLife) {
+                particles.splice(i, 1);
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    window.addEventListener("resize", resize);
+    document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        lastMouseMove = Date.now();
+    });
+
+    resize();
+    animate();
+</script>

@@ -1,0 +1,107 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+---
+
+<Layout title="Impressum - Simon Gneuss">
+    <Header />
+
+    <main class="content">
+        <h1>Impressum</h1>
+        <p><strong>Angaben gemäß § 5 DDG (Digitale-Dienste-Gesetz)</strong></p>
+
+        <h2>Diensteanbieter</h2>
+        <address>
+            <strong>Simon Gneuss</strong><br />
+            Birkenweg 6<br />
+            09569 Oederan<br />
+            Deutschland
+        </address>
+
+        <h2>Kontakt</h2>
+        <p>
+            E-Mail:
+            <a href="mailto:info@simongneuss.com">info@simongneuss.com</a>
+        </p>
+
+        <h2>Umsatzsteuer-ID</h2>
+        <p>
+            Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:
+            <em>nicht vorhanden</em>
+        </p>
+
+        <h2>Verantwortlich für den Inhalt</h2>
+        <p>
+            Verantwortlich im Sinne des § 18 Abs. 2 MStV:<br />
+            Simon Gneuss, Anschrift wie oben
+        </p>
+
+        <h2>Haftung für Inhalte</h2>
+        <p>
+            Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für
+            die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann
+            jedoch keine Gewähr übernommen werden.
+        </p>
+
+        <h2>Haftung für Links</h2>
+        <p>
+            Diese Website enthält ggf. Links zu externen Websites Dritter, auf
+            deren Inhalte kein Einfluss besteht. Für die Inhalte der verlinkten
+            Seiten ist stets der jeweilige Anbieter oder Betreiber
+            verantwortlich.
+        </p>
+
+        <p class="date"><small>Stand: 26.01.2026</small></p>
+    </main>
+</Layout>
+
+<style>
+    .content {
+        padding: 48px 0 80px;
+    }
+
+    h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 40px;
+        font-weight: 600;
+        color: #1a1a3e;
+        margin-bottom: 8px;
+    }
+
+    h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 22px;
+        font-weight: 600;
+        color: #1a1a3e;
+        margin-top: 32px;
+        margin-bottom: 12px;
+    }
+
+    p,
+    address {
+        font-size: 15px;
+        line-height: 1.7;
+        color: #444;
+        font-style: normal;
+    }
+
+    address {
+        margin: 8px 0;
+    }
+
+    a {
+        color: #1a1a3e;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+
+    a:hover {
+        color: #666;
+    }
+
+    .date {
+        margin-top: 48px;
+        color: #888;
+    }
+</style>

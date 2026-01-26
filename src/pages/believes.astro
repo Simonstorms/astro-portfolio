@@ -1,17 +1,28 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
+import crazyMe from "../assets/crazyme.jpeg";
 ---
 
-<Layout title="Believes - Designer Name">
+<Layout title="Believes - Simon Gneuss">
     <Header currentPage="believes" />
 
     <main>
         <section class="hero">
             <h1>Believes</h1>
-            <p class="intro">
-                The principles and beliefs that guide my design practice.
-            </p>
+            <p class="intro">Things I live by.</p>
+        </section>
+
+        <section class="beliefs">
+            <p>Truth matters.</p>
+            <p>Have lines you won't cross. I don't invest in defense.</p>
+            <p>Action creates information.</p>
+            <p>Do the hard thing.</p>
+            <p>Build systems where you can't cheat.</p>
+        </section>
+
+        <section class="photo">
+            <img src={crazyMe.src} alt="Crazy me" />
         </section>
     </main>
 </Layout>
@@ -26,10 +37,11 @@ import Header from "../components/Header.astro";
     }
 
     h1 {
-        font-size: 28px;
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 40px;
         font-weight: 600;
         margin-bottom: 16px;
-        letter-spacing: -0.3px;
     }
 
     .intro {
@@ -37,5 +49,28 @@ import Header from "../components/Header.astro";
         line-height: 1.6;
         color: #666;
         max-width: 460px;
+    }
+
+    .beliefs {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .beliefs p {
+        font-size: 17px;
+        line-height: 1.5;
+        color: #222;
+    }
+
+    .photo {
+        margin-top: 64px;
+    }
+
+    .photo img {
+        width: 100%;
+        max-width: 500px;
+        border-radius: 8px;
+        filter: brightness(0.7);
     }
 </style>
