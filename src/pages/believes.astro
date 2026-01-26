@@ -1,10 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
+import { Image } from "astro:assets";
 import crazyMe from "../assets/crazyme.jpeg";
 ---
 
-<Layout title="Believes - Simon Gneuss">
+<Layout title="Believes - Simon Gneuss" description="Personal beliefs and principles I live by. Truth matters, do the hard thing, action creates information.">
     <Header currentPage="believes" />
 
     <main>
@@ -22,7 +23,7 @@ import crazyMe from "../assets/crazyme.jpeg";
         </section>
 
         <section class="photo">
-            <img src={crazyMe.src} alt="Crazy me" />
+            <Image src={crazyMe} alt="Crazy me" class="photo-img" />
         </section>
     </main>
 </Layout>
@@ -67,9 +68,10 @@ import crazyMe from "../assets/crazyme.jpeg";
         margin-top: 64px;
     }
 
-    .photo img {
+    .photo-img {
         width: 100%;
         max-width: 500px;
+        height: auto;
         border-radius: 8px;
         filter: brightness(0.7);
     }

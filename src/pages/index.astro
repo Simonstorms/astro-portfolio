@@ -9,7 +9,10 @@ import group3 from "../assets/Group3.png";
 import group4 from "../assets/Group4.png";
 ---
 
-<Layout title="Simon Gneuss - Portfolio">
+<Layout
+    title="Simon Gneuss - Portfolio"
+    description="Designer and developer based in Berlin, Germany. Building products at Cledon, Intent, and more."
+>
     <Header currentPage="projects" />
 
     <main>
@@ -23,6 +26,7 @@ import group4 from "../assets/Group4.png";
                         width={240}
                         height={240}
                         quality={95}
+                        loading="eager"
                     />
                     <span class="wave">👋</span>
                 </div>
@@ -147,7 +151,12 @@ import group4 from "../assets/Group4.png";
                     rel="noopener"
                     class="work-card"
                 >
-                    <Image src={group1} alt="Cledon" class="work-image" />
+                    <Image
+                        src={group1}
+                        alt="Cledon"
+                        class="work-image"
+                        loading="eager"
+                    />
                     <h3>Cledon</h3>
                     <p>
                         Testing platform for voice AI agents. Simulate calls at
@@ -166,7 +175,12 @@ import group4 from "../assets/Group4.png";
                     rel="noopener"
                     class="work-card"
                 >
-                    <Image src={group2} alt="Intent" class="work-image" />
+                    <Image
+                        src={group2}
+                        alt="Intent"
+                        class="work-image"
+                        loading="eager"
+                    />
                     <h3>Intent</h3>
                     <p>
                         An app designed to help users combat distraction and
@@ -185,7 +199,12 @@ import group4 from "../assets/Group4.png";
                     rel="noopener"
                     class="work-card"
                 >
-                    <Image src={group3} alt="Previous Portfolio" class="work-image" />
+                    <Image
+                        src={group3}
+                        alt="Previous Portfolio"
+                        class="work-image"
+                        loading="eager"
+                    />
                     <h3>Previous Portfolio</h3>
                     <p>
                         My previous personal website showcasing freelance work,
@@ -204,7 +223,12 @@ import group4 from "../assets/Group4.png";
                     rel="noopener"
                     class="work-card"
                 >
-                    <Image src={group4} alt="TreeMatch" class="work-image" />
+                    <Image
+                        src={group4}
+                        alt="TreeMatch"
+                        class="work-image"
+                        loading="eager"
+                    />
                     <h3>TreeMatch</h3>
                     <p>
                         A matching platform built for Stanford students to
