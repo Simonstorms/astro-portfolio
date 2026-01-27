@@ -3,16 +3,19 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 ---
 
-<Layout title="Magic - Simon Gneuss" description="Experiments, side projects, and creative explorations by Simon Gneuss.">
+<Layout
+    title="Magic - Simon Gneuss"
+    description="Experiments, side projects, and creative explorations by Simon Gneuss."
+>
     <Header currentPage="magic" />
 
     <main>
-        <canvas id="ascii-canvas" aria-label="Interactive ASCII particle animation that follows mouse movement"></canvas>
+        <canvas
+            id="ascii-canvas"
+            aria-label="Interactive ASCII particle animation that follows mouse movement"
+        ></canvas>
         <section class="hero">
             <h1>✦ Magic</h1>
-            <p class="intro">
-                Experiments, side projects, and creative explorations.
-            </p>
         </section>
     </main>
 </Layout>
@@ -59,7 +62,8 @@ import Header from "../components/Header.astro";
     const canvas = document.getElementById("ascii-canvas") as HTMLCanvasElement;
     const ctx = canvas.getContext("2d")!;
 
-    const ASCII_CHARS = "@#$%&*!?+=~^°|/\\<>[]{}().:;,-_'\"`░▒▓█▄▀■□▪▫●○◐◑◒◓◔◕◖◗★☆✦✧✱✲✳✴✵✶✷✸✹※†‡§¶•·";
+    const ASCII_CHARS =
+        "@#$%&*!?+=~^°|/\\<>[]{}().:;,-_'\"`░▒▓█▄▀■□▪▫●○◐◑◒◓◔◕◖◗★☆✦✧✱✲✳✴✵✶✷✸✹※†‡§¶•·";
 
     interface Particle {
         x: number;
