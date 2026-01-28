@@ -6,18 +6,18 @@ import crazyMe from "../assets/crazyme.jpeg";
 ---
 
 <Layout
-    title="Believes - Simon Gneuss"
-    description="Personal beliefs, random facts, and book recommendations. Truth matters, do the hard thing, action creates information."
+    title="About - Simon Gneuss"
+    description="Personal beliefs, random facts, and book recommendations."
 >
-    <Header currentPage="believes" />
+    <Header currentPage="about" />
 
     <main>
         <section class="hero">
-            <h1>Believes</h1>
-            <p class="intro">Things I live by.</p>
+            <h1>About</h1>
         </section>
 
-        <section class="beliefs">
+        <section class="content">
+            <h2>Beliefs</h2>
             <p>Truth matters.</p>
             <p>Have lines you won't cross.</p>
             <p>Action creates information.</p>
@@ -25,14 +25,14 @@ import crazyMe from "../assets/crazyme.jpeg";
             <p>Build systems where you can't cheat.</p>
         </section>
 
-        <section class="facts">
+        <section class="content">
             <h2>Random Facts</h2>
             <p>I have a Worldstar Tanzabzeichen and did Opernball dances.</p>
             <p>Math Olympiad winner (school level).</p>
             <p>I love running marathons.</p>
         </section>
 
-        <section class="books">
+        <section class="content">
             <h2>Book Recommendations</h2>
             <p>Murderbot Diaries</p>
             <p>The Hard Thing About Hard Things</p>
@@ -61,35 +61,13 @@ import crazyMe from "../assets/crazyme.jpeg";
         font-style: italic;
         font-size: 40px;
         font-weight: 600;
-        margin-bottom: 16px;
     }
 
-    .intro {
-        font-size: 17px;
-        line-height: 1.6;
-        color: #666;
-        max-width: 460px;
+    .content {
+        margin-bottom: 48px;
     }
 
-    .beliefs {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-
-    .beliefs p {
-        font-size: 17px;
-        line-height: 1.5;
-        color: #222;
-    }
-
-    .facts,
-    .books {
-        margin-top: 64px;
-    }
-
-    .facts h2,
-    .books h2 {
+    .content h2 {
         font-family: "Cormorant Garamond", serif;
         font-style: italic;
         font-size: 28px;
@@ -97,21 +75,19 @@ import crazyMe from "../assets/crazyme.jpeg";
         margin-bottom: 20px;
     }
 
-    .facts p,
-    .books p {
+    .content p {
         font-size: 17px;
         line-height: 1.5;
         color: #222;
         margin-bottom: 12px;
     }
 
-    .facts p:last-child,
-    .books p:last-child {
+    .content p:last-child {
         margin-bottom: 0;
     }
 
     .photo {
-        margin-top: 64px;
+        margin-top: 16px;
     }
 
     .photo-img {

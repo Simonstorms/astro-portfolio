@@ -12,12 +12,9 @@ const { currentPage = "projects" } = Astro.props;
             Projects
             {currentPage === "projects" && <span class="dot" />}
         </a>
-        <a
-            href="/believes"
-            class:list={[{ active: currentPage === "believes" }]}
-        >
-            Believes
-            {currentPage === "believes" && <span class="dot" />}
+        <a href="/about" class:list={[{ active: currentPage === "about" }]}>
+            About
+            {currentPage === "about" && <span class="dot" />}
         </a>
         <a href="/magic" class:list={[{ active: currentPage === "magic" }]}>
             Magic
