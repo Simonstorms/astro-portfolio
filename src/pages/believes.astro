@@ -7,7 +7,7 @@ import crazyMe from "../assets/crazyme.jpeg";
 
 <Layout
     title="Believes - Simon Gneuss"
-    description="Personal beliefs and principles I live by. Truth matters, do the hard thing, action creates information."
+    description="Personal beliefs, random facts, and book recommendations. Truth matters, do the hard thing, action creates information."
 >
     <Header currentPage="believes" />
 
@@ -25,9 +25,25 @@ import crazyMe from "../assets/crazyme.jpeg";
             <p>Build systems where you can't cheat.</p>
         </section>
 
+        <section class="facts">
+            <h2>Random Facts</h2>
+            <p>I have a Worldstar Tanzabzeichen and did Opernball dances.</p>
+            <p>Math Olympiad winner (school level).</p>
+            <p>I love running marathons.</p>
+        </section>
+
+        <section class="books">
+            <h2>Book Recommendations</h2>
+            <p>Murderbot Diaries</p>
+            <p>The Hard Thing About Hard Things</p>
+            <p>Thinking in Bets</p>
+        </section>
+
         <section class="photo">
             <Image src={crazyMe} alt="Crazy me" class="photo-img" />
         </section>
+
+        <p class="last-edited">Last edited: January 2025</p>
     </main>
 </Layout>
 
@@ -67,6 +83,33 @@ import crazyMe from "../assets/crazyme.jpeg";
         color: #222;
     }
 
+    .facts,
+    .books {
+        margin-top: 64px;
+    }
+
+    .facts h2,
+    .books h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .facts p,
+    .books p {
+        font-size: 17px;
+        line-height: 1.5;
+        color: #222;
+        margin-bottom: 12px;
+    }
+
+    .facts p:last-child,
+    .books p:last-child {
+        margin-bottom: 0;
+    }
+
     .photo {
         margin-top: 64px;
     }
@@ -77,5 +120,11 @@ import crazyMe from "../assets/crazyme.jpeg";
         height: auto;
         border-radius: 8px;
         filter: brightness(0.8);
+    }
+
+    .last-edited {
+        margin-top: 64px;
+        font-size: 14px;
+        color: #999;
     }
 </style>
