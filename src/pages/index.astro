@@ -7,6 +7,9 @@ import group1 from "../assets/Group1.png";
 import group2 from "../assets/Group2.png";
 import group3 from "../assets/Group3.png";
 import group4 from "../assets/Group4.png";
+import lore from "../assets/lore.png";
+import bernie from "../assets/bernie.png";
+import lichtung from "../assets/lichtung.png";
 ---
 
 <Layout
@@ -142,6 +145,84 @@ import group4 from "../assets/Group4.png";
             </p>
 
             <div class="works-grid">
+                <div class="work-card">
+                    <Image
+                        src={lore}
+                        alt="Lore"
+                        class="work-image"
+                        width={900}
+                        height={620}
+                        loading="eager"
+                        fetchpriority="high"
+                    />
+                    <h3>Lore</h3>
+                    <p>
+                        Culture intelligence for marketing teams. Lore watches
+                        millions of TikTok and Instagram videos and turns them
+                        into evidence-backed insights and strategy. Co-founded
+                        and built as CTO.
+                    </p>
+                    <div class="work-footer">
+                        <div class="work-tags">
+                            <span class="work-tag">Consumer Intelligence</span>
+                            <span class="work-tag">Exited</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a
+                    href="https://lichtung.health/funnel?step=onboarding"
+                    target="_blank"
+                    rel="noopener"
+                    class="work-card"
+                >
+                    <Image
+                        src={lichtung}
+                        alt="Lichtung"
+                        class="work-image"
+                        width={900}
+                        height={620}
+                        loading="eager"
+                    />
+                    <h3>Lichtung</h3>
+                    <p>
+                        Finding a therapy spot in Germany without the waitlist
+                        frustration. Answer a few questions and Lichtung
+                        contacts every matching therapist for you,
+                        automatically and for free.
+                    </p>
+                    <div class="work-footer">
+                        <span class="work-tag">Therapy Matching</span>
+                        <span class="work-arrow">→</span>
+                    </div>
+                </a>
+
+                <a
+                    href="https://berniebouncer.com"
+                    target="_blank"
+                    rel="noopener"
+                    class="work-card"
+                >
+                    <Image
+                        src={bernie}
+                        alt="Bernie Bouncer"
+                        class="work-image"
+                        width={900}
+                        height={620}
+                        loading="lazy"
+                    />
+                    <h3>Bernie Bouncer</h3>
+                    <p>
+                        An app blocker with a doorman. Open a blocked app and a
+                        bouncer stands in the way, you have to talk your way
+                        past him to earn a timed pass. Live on the App Store.
+                    </p>
+                    <div class="work-footer">
+                        <span class="work-tag">iOS App</span>
+                        <span class="work-arrow">→</span>
+                    </div>
+                </a>
+
                 <a
                     href="https://cledon.ai"
                     target="_blank"
@@ -154,8 +235,7 @@ import group4 from "../assets/Group4.png";
                         class="work-image"
                         width={900}
                         height={620}
-                        loading="eager"
-                        fetchpriority="high"
+                        loading="lazy"
                     />
                     <h3>Cledon</h3>
                     <p>
@@ -181,7 +261,7 @@ import group4 from "../assets/Group4.png";
                         class="work-image"
                         width={900}
                         height={620}
-                        loading="eager"
+                        loading="lazy"
                     />
                     <h3>Intent</h3>
                     <p>
@@ -245,6 +325,9 @@ import group4 from "../assets/Group4.png";
                         <span class="work-arrow">→</span>
                     </div>
                 </a>
+
+
+
             </div>
         </div>
     </section>
@@ -399,7 +482,7 @@ import group4 from "../assets/Group4.png";
             box-shadow 0.2s;
     }
 
-    .work-card:hover {
+    a.work-card:hover {
         transform: translateY(-4px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
@@ -433,6 +516,11 @@ import group4 from "../assets/Group4.png";
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+
+    .work-tags {
+        display: flex;
+        gap: 8px;
     }
 
     .work-tag {
