@@ -1,7 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
+import Clients from "../components/Clients.astro";
 import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import avatar from "../assets/me.jpeg";
 import group1 from "../assets/Group1.png";
 import group2 from "../assets/Group2.png";
@@ -10,6 +12,105 @@ import group4 from "../assets/Group4.png";
 import lore from "../assets/lore.png";
 import bernie from "../assets/bernie.png";
 import lichtung from "../assets/lichtung.png";
+import w3view from "../assets/w3view.jpg";
+import splitcast from "../assets/splitcast.jpg";
+
+interface Work {
+    name: string;
+    description: string;
+    image: ImageMetadata;
+    tags: string[];
+    href?: string;
+}
+
+interface WorkGroup {
+    label: string;
+    works: Work[];
+}
+
+const groups: WorkGroup[] = [
+    {
+        label: "Products",
+        works: [
+            {
+                name: "Lore",
+                description:
+                    "Culture intelligence for marketing teams, built from millions of TikTok and Instagram videos. Co-founded and built as CTO.",
+                image: lore,
+                tags: ["Consumer Intelligence", "Exited"],
+            },
+            {
+                name: "Lichtung",
+                description:
+                    "Finds a therapy spot in Germany by contacting every matching therapist for you, automatically and for free.",
+                image: lichtung,
+                tags: ["Therapy Matching"],
+                href: "https://lichtung.health/funnel?step=onboarding",
+            },
+            {
+                name: "w3view",
+                description:
+                    "Google Ads, Meta Ads and newsletter reconciled against real Shopware revenue, in one dashboard.",
+                image: w3view,
+                tags: ["Marketing Analytics"],
+                href: "https://w3view.de",
+            },
+            {
+                name: "Splitcast",
+                description:
+                    "Voice-guided interval running for iPhone. Pace and heart rate cues spoken over your music.",
+                image: splitcast,
+                tags: ["Running App"],
+                href: "https://apps.apple.com/app/id6808723521",
+            },
+            {
+                name: "Bernie Bouncer",
+                description:
+                    "An app blocker with a doorman. Talk your way past him to earn a timed pass.",
+                image: bernie,
+                tags: ["iOS App"],
+                href: "https://berniebouncer.com",
+            },
+            {
+                name: "Cledon",
+                description:
+                    "Testing platform for voice AI agents. Simulate calls at scale and catch bugs before your users do.",
+                image: group1,
+                tags: ["Voice AI Testing"],
+                href: "https://cledon.ai",
+            },
+        ],
+    },
+    {
+        label: "Earlier work",
+        works: [
+            {
+                name: "Intent",
+                description:
+                    "An app that holds you accountable to one thing at a time. Built at Stanford.",
+                image: group2,
+                tags: ["Focus App"],
+                href: "https://intention-labs-landing.vercel.app/",
+            },
+            {
+                name: "TreeMatch",
+                description:
+                    "A matching platform for Stanford students to find the right people.",
+                image: group4,
+                tags: ["Platform"],
+                href: "https://www.treemat.ch/",
+            },
+            {
+                name: "Previous Portfolio",
+                description:
+                    "My earlier personal site with freelance work and projects.",
+                image: group3,
+                tags: ["Portfolio"],
+                href: "https://simongneuss.com",
+            },
+        ],
+    },
+];
 ---
 
 <Layout
@@ -133,6 +234,8 @@ import lichtung from "../assets/lichtung.png";
                 </a>
             </div>
         </section>
+
+        <Clients />
     </main>
 
     <div class="separator"></div>
@@ -144,191 +247,53 @@ import lichtung from "../assets/lichtung.png";
                 I love building, these are some of the best projects i have done
             </p>
 
-            <div class="works-grid">
-                <div class="work-card">
-                    <Image
-                        src={lore}
-                        alt="Lore"
-                        class="work-image"
-                        width={900}
-                        height={620}
-                        loading="eager"
-                        fetchpriority="high"
-                    />
-                    <h3>Lore</h3>
-                    <p>
-                        Culture intelligence for marketing teams. Lore watches
-                        millions of TikTok and Instagram videos and turns them
-                        into evidence-backed insights and strategy. Co-founded
-                        and built as CTO.
-                    </p>
-                    <div class="work-footer">
-                        <div class="work-tags">
-                            <span class="work-tag">Consumer Intelligence</span>
-                            <span class="work-tag">Exited</span>
+            {
+                groups.map((group, groupIndex) => (
+                    <div class="works-group">
+                        <p class="works-label">{group.label}</p>
+                        <div class="works-grid">
+                            {group.works.map((work, index) => {
+                                const eager = groupIndex === 0 && index < 3;
+                                const Tag = work.href ? "a" : "div";
+                                return (
+                                    <Tag
+                                        class="work-card"
+                                        href={work.href}
+                                        target={work.href ? "_blank" : undefined}
+                                        rel={work.href ? "noopener" : undefined}
+                                    >
+                                        <Image
+                                            src={work.image}
+                                            alt={work.name}
+                                            class="work-image"
+                                            width={720}
+                                            height={480}
+                                            loading={eager ? "eager" : "lazy"}
+                                            fetchpriority={
+                                                groupIndex === 0 && index === 0
+                                                    ? "high"
+                                                    : undefined
+                                            }
+                                        />
+                                        <h3>{work.name}</h3>
+                                        <p>{work.description}</p>
+                                        <div class="work-footer">
+                                            <div class="work-tags">
+                                                {work.tags.map((tag) => (
+                                                    <span class="work-tag">{tag}</span>
+                                                ))}
+                                            </div>
+                                            {work.href && (
+                                                <span class="work-arrow">→</span>
+                                            )}
+                                        </div>
+                                    </Tag>
+                                );
+                            })}
                         </div>
                     </div>
-                </div>
-
-                <a
-                    href="https://lichtung.health/funnel?step=onboarding"
-                    target="_blank"
-                    rel="noopener"
-                    class="work-card"
-                >
-                    <Image
-                        src={lichtung}
-                        alt="Lichtung"
-                        class="work-image"
-                        width={900}
-                        height={620}
-                        loading="eager"
-                    />
-                    <h3>Lichtung</h3>
-                    <p>
-                        Finding a therapy spot in Germany without the waitlist
-                        frustration. Answer a few questions and Lichtung
-                        contacts every matching therapist for you,
-                        automatically and for free.
-                    </p>
-                    <div class="work-footer">
-                        <span class="work-tag">Therapy Matching</span>
-                        <span class="work-arrow">→</span>
-                    </div>
-                </a>
-
-                <a
-                    href="https://berniebouncer.com"
-                    target="_blank"
-                    rel="noopener"
-                    class="work-card"
-                >
-                    <Image
-                        src={bernie}
-                        alt="Bernie Bouncer"
-                        class="work-image"
-                        width={900}
-                        height={620}
-                        loading="lazy"
-                    />
-                    <h3>Bernie Bouncer</h3>
-                    <p>
-                        An app blocker with a doorman. Open a blocked app and a
-                        bouncer stands in the way, you have to talk your way
-                        past him to earn a timed pass. Live on the App Store.
-                    </p>
-                    <div class="work-footer">
-                        <span class="work-tag">iOS App</span>
-                        <span class="work-arrow">→</span>
-                    </div>
-                </a>
-
-                <a
-                    href="https://cledon.ai"
-                    target="_blank"
-                    rel="noopener"
-                    class="work-card"
-                >
-                    <Image
-                        src={group1}
-                        alt="Cledon"
-                        class="work-image"
-                        width={900}
-                        height={620}
-                        loading="lazy"
-                    />
-                    <h3>Cledon</h3>
-                    <p>
-                        Testing platform for voice AI agents. Simulate calls at
-                        scale, monitor live conversations and catch bugs before
-                        your users do.
-                    </p>
-                    <div class="work-footer">
-                        <span class="work-tag">Voice AI Testing</span>
-                        <span class="work-arrow">→</span>
-                    </div>
-                </a>
-
-                <a
-                    href="https://intention-labs-landing.vercel.app/"
-                    target="_blank"
-                    rel="noopener"
-                    class="work-card"
-                >
-                    <Image
-                        src={group2}
-                        alt="Intent"
-                        class="work-image"
-                        width={900}
-                        height={620}
-                        loading="lazy"
-                    />
-                    <h3>Intent</h3>
-                    <p>
-                        An app designed to help users combat distraction and
-                        maintain focused attention. Holding you accountable, one
-                        thing at a time. Build in Stanford.
-                    </p>
-                    <div class="work-footer">
-                        <span class="work-tag">Focus App</span>
-                        <span class="work-arrow">→</span>
-                    </div>
-                </a>
-
-                <a
-                    href="https://simongneuss.com"
-                    target="_blank"
-                    rel="noopener"
-                    class="work-card"
-                >
-                    <Image
-                        src={group3}
-                        alt="Previous Portfolio"
-                        class="work-image"
-                        width={900}
-                        height={620}
-                        loading="lazy"
-                    />
-                    <h3>Previous Portfolio</h3>
-                    <p>
-                        My previous personal website showcasing freelance work,
-                        technical skills, and projects from my journey as a
-                        software developer.
-                    </p>
-                    <div class="work-footer">
-                        <span class="work-tag">Portfolio</span>
-                        <span class="work-arrow">→</span>
-                    </div>
-                </a>
-
-                <a
-                    href="https://www.treemat.ch/"
-                    target="_blank"
-                    rel="noopener"
-                    class="work-card"
-                >
-                    <Image
-                        src={group4}
-                        alt="TreeMatch"
-                        class="work-image"
-                        width={900}
-                        height={620}
-                        loading="lazy"
-                    />
-                    <h3>TreeMatch</h3>
-                    <p>
-                        A matching platform built for Stanford students to
-                        connect and find the right people.
-                    </p>
-                    <div class="work-footer">
-                        <span class="work-tag">Platform</span>
-                        <span class="work-arrow">→</span>
-                    </div>
-                </a>
-
-
-
-            </div>
+                ))
+            }
         </div>
     </section>
 </Layout>
@@ -458,23 +423,37 @@ import lichtung from "../assets/lichtung.png";
         text-align: center;
         color: #666;
         font-size: 16px;
-        margin-bottom: 48px;
+        margin-bottom: 40px;
         max-width: 480px;
         margin-left: auto;
         margin-right: auto;
     }
 
+    .works-group + .works-group {
+        margin-top: 40px;
+    }
+
+    .works-label {
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #999;
+        margin-bottom: 14px;
+    }
+
     .works-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
     }
 
     .work-card {
-        display: block;
+        display: flex;
+        flex-direction: column;
         background: #fff;
-        border-radius: 16px;
-        padding: 16px;
+        border-radius: 14px;
+        padding: 12px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
         text-decoration: none;
         transition:
@@ -483,15 +462,16 @@ import lichtung from "../assets/lichtung.png";
     }
 
     a.work-card:hover {
-        transform: translateY(-4px);
+        transform: translateY(-3px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
     .work-image {
         width: 100%;
-        height: 280px;
-        border-radius: 12px;
-        margin-bottom: 20px;
+        height: auto;
+        aspect-ratio: 3 / 2;
+        border-radius: 10px;
+        margin-bottom: 14px;
         object-fit: cover;
         object-position: center;
     }
@@ -499,46 +479,50 @@ import lichtung from "../assets/lichtung.png";
     .work-card h3 {
         font-family: "Cormorant Garamond", serif;
         font-style: italic;
-        font-size: 26px;
+        font-size: 21px;
         font-weight: 600;
-        margin-bottom: 12px;
+        margin-bottom: 6px;
         color: #1a1a3e;
     }
 
     .work-card p {
-        font-size: 14px;
-        line-height: 1.6;
+        font-size: 13px;
+        line-height: 1.5;
         color: #666;
-        margin-bottom: 16px;
+        margin-bottom: 14px;
+        flex-grow: 1;
     }
 
     .work-footer {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 8px;
     }
 
     .work-tags {
         display: flex;
-        gap: 8px;
+        flex-wrap: wrap;
+        gap: 6px;
     }
 
     .work-tag {
         display: inline-block;
-        padding: 8px 14px;
+        padding: 5px 10px;
         background: #1a1a3e;
         color: #fff;
-        font-size: 12px;
-        border-radius: 6px;
+        font-size: 11px;
+        border-radius: 5px;
     }
 
     .work-arrow {
-        width: 36px;
-        height: 36px;
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
         border-radius: 50%;
         background: #1a1a3e;
         color: #fff;
-        font-size: 16px;
+        font-size: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -550,17 +534,19 @@ import lichtung from "../assets/lichtung.png";
         opacity: 1;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 860px) {
+        .works-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 560px) {
         .works-grid {
             grid-template-columns: 1fr;
         }
 
         .works-title {
             font-size: 28px;
-        }
-
-        .work-image {
-            height: 200px;
         }
     }
 </style>
