@@ -1,5 +1,6 @@
 ---
 import Footer from "../components/Footer.astro";
+import MagicTrail from "../components/MagicTrail.astro";
 
 interface Props {
     title: string;
@@ -76,6 +77,7 @@ const {
             <slot />
             <Footer />
         </div>
+        <MagicTrail />
     </body>
 </html>
 

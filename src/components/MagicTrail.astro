@@ -1,0 +1,166 @@
+<style is:global>
+    #magic-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1000;
+    }
+</style>
+
+<script>
+    const SECRET = "magic";
+    const STORAGE_KEY = "magic";
+    const ASCII_CHARS =
+        "@#$%&*!?+=~^°|/\\<>[]{}().:;,-_'\"`░▒▓█▄▀■□▪▫●○◐◑◒◓◔◕◖◗★☆✦✧✱✲✳✴✵✶✷✸✹※†‡§¶•·";
+
+    interface Particle {
+        x: number;
+        y: number;
+        vx: number;
+        vy: number;
+        char: string;
+        life: number;
+        maxLife: number;
+        opacity: number;
+        size: number;
+    }
+
+    const particles: Particle[] = [];
+    let canvas: HTMLCanvasElement | null = null;
+    let ctx: CanvasRenderingContext2D | null = null;
+    let frame = 0;
+    let typed = "";
+    let mouseX = 0;
+    let mouseY = 0;
+    let lastMouseMove = 0;
+
+    function resize() {
+        if (!canvas) return;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    function onMouseMove(e: MouseEvent) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        lastMouseMove = Date.now();
+    }
+
+    function createParticle(x: number, y: number) {
+        particles.push({
+            x: x + (Math.random() - 0.5) * 10,
+            y,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: Math.random() * 0.2,
+            char: ASCII_CHARS[Math.floor(Math.random() * ASCII_CHARS.length)],
+            life: 0,
+            maxLife: Math.random() * 80 + 60,
+            opacity: 1,
+            size: Math.random() * 6 + 10,
+        });
+    }
+
+    function animate() {
+        if (!canvas || !ctx) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (Date.now() - lastMouseMove < 100) {
+            for (let i = 0; i < 2; i++) {
+                createParticle(mouseX, mouseY);
+            }
+        }
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+
+            p.vy += 0.03;
+            p.x += p.vx;
+            p.y += p.vy;
+
+            p.life++;
+            p.opacity = 1 - p.life / p.maxLife;
+
+            ctx.save();
+            ctx.font = `${p.size}px monospace`;
+            ctx.fillStyle = `rgba(0, 0, 0, ${p.opacity * 0.6})`;
+            ctx.fillText(p.char, p.x, p.y);
+            ctx.restore();
+
+            if (p.life >= p.maxLife) {
+                particles.splice(i, 1);
+            }
+        }
+
+        frame = requestAnimationFrame(animate);
+    }
+
+    function start() {
+        if (canvas) return;
+        canvas = document.createElement("canvas");
+        canvas.id = "magic-canvas";
+        canvas.setAttribute("aria-hidden", "true");
+        document.body.appendChild(canvas);
+        ctx = canvas.getContext("2d");
+        resize();
+        window.addEventListener("resize", resize);
+        document.addEventListener("mousemove", onMouseMove);
+        frame = requestAnimationFrame(animate);
+    }
+
+    function stop() {
+        if (!canvas) return;
+        cancelAnimationFrame(frame);
+        window.removeEventListener("resize", resize);
+        document.removeEventListener("mousemove", onMouseMove);
+        canvas.remove();
+        canvas = null;
+        ctx = null;
+        particles.length = 0;
+    }
+
+    function remember(active: boolean) {
+        try {
+            if (active) {
+                sessionStorage.setItem(STORAGE_KEY, "1");
+            } else {
+                sessionStorage.removeItem(STORAGE_KEY);
+            }
+        } catch {}
+    }
+
+    function remembered() {
+        try {
+            return sessionStorage.getItem(STORAGE_KEY) === "1";
+        } catch {
+            return false;
+        }
+    }
+
+    document.addEventListener("keydown", (e) => {
+        if (e.metaKey || e.ctrlKey || e.altKey || e.key.length !== 1) return;
+        const target = e.target as HTMLElement;
+        if (
+            target.isContentEditable ||
+            ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName)
+        ) {
+            return;
+        }
+
+        typed = (typed + e.key.toLowerCase()).slice(-SECRET.length);
+        if (typed !== SECRET) return;
+
+        typed = "";
+        if (canvas) {
+            stop();
+            remember(false);
+        } else {
+            start();
+            remember(true);
+        }
+    });
+
+    if (remembered()) start();
+</script>

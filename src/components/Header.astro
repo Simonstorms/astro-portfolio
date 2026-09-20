@@ -16,10 +16,6 @@ const { currentPage = "projects" } = Astro.props;
             About
             {currentPage === "about" && <span class="dot" />}
         </a>
-        <a href="/magic" class:list={[{ active: currentPage === "magic" }]}>
-            Magic
-            {currentPage === "magic" && <span class="dot" />}
-        </a>
     </nav>
 </header>
 
