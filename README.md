@@ -15,6 +15,6 @@ npm run preview  # Preview production build
 
 ## Stack
 
-- Astro 5
+- Astro 7
 - TypeScript
 - Scoped CSS

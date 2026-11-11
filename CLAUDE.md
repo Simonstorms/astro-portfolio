@@ -12,7 +12,7 @@ npm run preview  # Preview production build locally
 
 ## Architecture
 
-This is a portfolio website built with Astro 5.
+This is a portfolio website built with Astro 7.
 
 **Structure:**
 - `src/pages/` - File-based routing (.astro files become routes)
